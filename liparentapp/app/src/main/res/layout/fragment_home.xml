@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F5F7FA"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="72dp">
+
+        <!-- ── Balance Card ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1A1F36"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="32dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Balance"
+                android:textColor="#AAAACC"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="KES 45,200.00"
+                android:textColor="#FFFFFF"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvUsdcBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="+ 0.00 USDC"
+                android:textColor="#4CAF50"
+                android:textSize="13sp" />
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTopUp"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:text="Top Up"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#4CAF50"
+                    app:cornerRadius="8dp"
+                    app:icon="@android:drawable/ic_input_add"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconTint="#FFFFFF" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSend"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="Send"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#2196F3"
+                    app:cornerRadius="8dp"
+                    app:icon="@android:drawable/ic_menu_send"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconTint="#FFFFFF" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ── Recent Activity Section ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="16dp">
+
+            <!-- Section Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Recent Activity"
+                    android:textColor="#1A1F36"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSeeAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See All"
+                    android:textColor="#2196F3"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rvTransactions"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+               tools:listitem="@layout/item_transaction"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

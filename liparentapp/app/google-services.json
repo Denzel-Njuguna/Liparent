@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "921682531075",
+    "project_id": "warrex-96c1d",
+    "storage_bucket": "warrex-96c1d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921682531075:android:1346b2313569c8b87c0f36",
+        "android_client_info": {
+          "package_name": "com.example.warrex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNyDaUYzedcgd4gWCuqlxJRzdElcRYr7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

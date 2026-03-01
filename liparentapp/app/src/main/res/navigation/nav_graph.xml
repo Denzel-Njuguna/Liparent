@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/landingFragment">
+<!--this is from landing page to either login or signup depending on user's choice-->
+    <fragment
+        android:id="@+id/landingFragment"
+        android:name="com.example.warrex.LandingFragment"
+        android:label="welcome"
+        tools:layout="@layout/fragment_landing">
+
+        <action
+            android:id="@+id/action_landing_to_signup"
+            app:destination="@id/SignupFragment" />
+        <action
+            android:id="@+id/action_landing_to_login"
+            app:destination="@id/LoginFragment" />
+        <action
+            android:id="@+id/action_landing_to_home"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+<!--    this is the login fragment that is responsible for moving from either login to signup or login to homepage if successfully-->
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.example.warrex.LoginFragment"
+        android:label="login"
+        tools:layout="@layout/fragment_login">
+        <!--        this is the action for moving from login to homepage -->
+        <action
+            android:id="@+id/action_login_to_homepage"
+            app:destination="@id/HomeFragment" />
+<!--        this is the action for moving from login to signup -->
+        <action
+            android:id="@+id/action_login_to_signup"
+            app:destination="@id/SignupFragment" />
+    </fragment>
+
+
+<!--    this is the signup page that is responsible for moving from either signup to login or signup to homepage if successfull-->
+    <fragment
+        android:id="@+id/SignupFragment"
+        android:name="com.example.warrex.SignupFragment"
+        android:label="signup"
+        tools:layout="@layout/fragment_signup">
+<!--this is the action for moving from signup to homepage-->
+        <action
+            android:id="@+id/action_signup_to_homepage"
+            app:destination="@id/HomeFragment" />
+<!--        this is the action for moving from signup to login page-->
+        <action
+            android:id="@+id/action_signup_to_login"
+            app:destination="@id/LoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.example.warrex.HomeFragment"
+        android:label="Homepage"
+        tools:layout="@layout/fragment_home">
+    </fragment>
+</navigation>

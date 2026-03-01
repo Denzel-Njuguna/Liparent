@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark theme colors (automatically used in night mode) -->
+    <color name="text_primary">@color/dark_text_primary</color>
+    <color name="text_secondary">@color/dark_text_secondary</color>
+    <color name="background">@color/dark_background</color>
+    <color name="card_background">@color/dark_card_background</color>
+    <color name="tint">@color/tint_color_dark</color>
+    <color name="tab_icon_default">@color/dark_tab_icon_default</color>
+    <color name="tab_icon_selected">@color/tint_color_dark</color>
+</resources>

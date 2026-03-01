@@ -1,0 +1,24 @@
+<resources>
+    <!-- Dark theme variant - automatically applied in night mode -->
+    <style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary colors - darker variant -->
+        <item name="colorPrimary">@color/tint_color_dark</item>
+        <item name="colorPrimaryVariant">@color/tint_color_dark</item>
+        <item name="colorOnPrimary">@color/dark_background</item>
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/tint_color_dark</item>
+        <item name="colorSecondaryVariant">@color/tint_color_dark</item>
+        <item name="colorOnSecondary">@color/dark_background</item>
+
+        <!-- Background and text -->
+        <item name="android:colorBackground">@color/dark_background</item>
+        <item name="android:textColorPrimary">@color/dark_text_primary</item>
+        <item name="android:textColorSecondary">@color/dark_text_secondary</item>
+
+        <!-- Custom attributes -->
+        <item name="cardBackgroundColor">@color/dark_card_background</item>
+        <item name="tabIconDefault">@color/dark_tab_icon_default</item>
+        <item name="tabIconSelected">@color/tint_color_dark</item>
+    </style>
+</resources>

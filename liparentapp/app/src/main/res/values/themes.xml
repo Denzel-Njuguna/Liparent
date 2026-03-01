@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/tint_color_light</item>
+        <item name="colorPrimaryVariant">@color/tint_color_light</item>
+        <item name="colorOnPrimary">@color/light_background</item>
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/tint_color_light</item>
+        <item name="colorSecondaryVariant">@color/tint_color_light</item>
+        <item name="colorOnSecondary">@color/light_background</item>
+
+        <!-- Background and text -->
+        <item name="android:colorBackground">@color/light_background</item>
+        <item name="android:textColorPrimary">@color/light_text_primary</item>
+        <item name="android:textColorSecondary">@color/light_text_secondary</item>
+
+        <!-- Custom attributes (you'll define these) -->
+        <item name="cardBackgroundColor">@color/light_card_background</item>
+        <item name="tabIconDefault">@color/light_tab_icon_default</item>
+        <item name="tabIconSelected">@color/tint_color_light</item>
+    </style>
+</resources>

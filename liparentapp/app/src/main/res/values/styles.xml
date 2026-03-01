@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.apex" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand colors -->
+        <item name="colorPrimary">@color/tint</item>
+        <item name="colorPrimaryVariant">@color/tint_color_light</item>
+        <item name="colorOnPrimary">@color/text_primary</item>
+
+        <!-- Secondary brand colors -->
+        <item name="colorSecondary">@color/text_secondary</item>
+        <item name="colorSecondaryVariant">@color/text_secondary</item>
+        <item name="colorOnSecondary">@color/background</item>
+
+        <!-- Background and text colors -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.apex" parent="Base.Theme.apex" />
+</resources>

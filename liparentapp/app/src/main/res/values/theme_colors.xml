@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme-aware colors that change with light/dark mode -->
+    <color name="text_primary">@color/light_text_primary</color>
+    <color name="text_secondary">@color/light_text_secondary</color>
+    <color name="background">@color/light_background</color>
+    <color name="card_background">@color/light_card_background</color>
+    <color name="tint">@color/tint_color_light</color>
+    <color name="tab_icon_default">@color/light_tab_icon_default</color>
+    <color name="tab_icon_selected">@color/tint_color_light</color>
+</resources>

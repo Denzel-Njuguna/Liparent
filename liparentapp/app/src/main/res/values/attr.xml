@@ -1,0 +1,7 @@
+<resources>
+    <!-- Define custom attributes that you can use in your layouts -->
+    <attr name="cardBackgroundColor" format="color" />
+    <attr name="tabIconDefault" format="color" />
+    <attr name="tabIconSelected" format="color" />
+    <attr name="textSecondary" format="color" />
+</resources>

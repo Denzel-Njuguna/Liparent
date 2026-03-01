@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base colors -->
+    <color name="tint_color_light">#2f95dc</color>
+    <color name="tint_color_dark">#ffffff</color>
+    <color name="dark_card_background">#303030</color>
+    <color name="light_card_background">#E7E7E7</color>
+    <color name="debit">#4CAF50</color>
+    <color name="credit">#F44336</color>
+
+    <!-- Light theme colors -->
+    <color name="light_text_primary">#000000</color>
+    <color name="light_text_secondary">#94784A</color>
+    <color name="light_background">#ffffff</color>
+    <color name="light_tab_icon_default">#cccccc</color>
+
+    <!-- Dark theme colors -->
+    <color name="dark_text_primary">#000000</color>
+    <color name="dark_text_secondary">#E7DED0</color>
+    <color name="dark_background">#000000</color>
+    <color name="dark_tab_icon_default">#cccccc</color>
+</resources>
