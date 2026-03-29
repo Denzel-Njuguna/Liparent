@@ -17,10 +17,14 @@ defmodule LiparentV1.Agencytokenmanager do
       {:ok, token, full_claims} ->
       case db_token_store(token, full_claims, employee.id) do
         {:ok, tokenstored} -> {:ok, tokenstored}
-        {:error, reason} ->{:error, reason}
+        {:error, reason} ->
+          Logger.error("there was an issue storing the token :#{reason}")
+          {:dbtokenstoreerror, "server error"}
       end
 
-      {:error, reason} -> {:error, reason}
+      {:error, reason} ->
+        Logger.error("could not generate and sign token #{reason}")
+        {:tokenerror, "server error"}
     end
   end
   # this is creating a token for agency employee

@@ -4,7 +4,8 @@ defmodule LiparentV1.Schemas.Agencyemployeeschema do
   import Ecto.Changeset
 
 # this is the schema for agency login
-  @primary_key{:employeeid, :binary_id, autogenerate: true}
+  @schema_prefix "agency"
+  @primary_key {:employeeid, :binary_id, autogenerate: true}
   schema "agencyemployee" do
     field :fullname, :string
     field :email, :string
@@ -13,9 +14,12 @@ defmodule LiparentV1.Schemas.Agencyemployeeschema do
     field :createdby, Ecto.UUID
     field :password, :string
     field :role, :string
-    timestamps()
   end
 
+  @spec registration_changeset(
+          :invalid
+          | %{optional(:__struct__) => none(), optional(atom() | binary()) => any()}
+        ) :: Ecto.Changeset.t()
   def registration_changeset(attr) do
     %Agencyemployeeschema{}
     |>cast(attr, [:fullname, :agencyid,:email, :phonenumber, :role, :createdby, :password])
@@ -26,7 +30,7 @@ defmodule LiparentV1.Schemas.Agencyemployeeschema do
   defp hash_password(changeset) do
       if password = get_change(changeset, :password) do
         changeset
-        |>put_change(:passhash, Bcrypt.hash_pwd_salt(password))
+        |>put_change(:password, Bcrypt.hash_pwd_salt(password))
         |>delete_change(:password)
       else
         changeset

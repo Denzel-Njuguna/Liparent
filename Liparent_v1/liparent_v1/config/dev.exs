@@ -14,8 +14,7 @@ config :liparent_v1, LiparentV1.Repo,
   database: "deeznutz",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10,
-  schema: "agency"
+  pool_size: 10
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
