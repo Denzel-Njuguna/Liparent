@@ -4,10 +4,10 @@ defmodule LiparentV1Web.EmployeeController do
   alias LiparentV1.Agencytokenmanager
   alias LiparentV1.Agencyemployeeaccount
   alias LiparentV1.Validation
-  # def process_signup(conn, %{email: email, password: password}) do
+  def process_signup(conn, params) do
 
-  # end
-  def process_login(conn, %{"email" => email, "password" => password}) do
+  end
+  def process_login(conn, %{"email" => email, "password"=> password}) do
     changeset = validate_login_data(%{email: email, password: password})
     Logger.info("we have been contacted. tumeguzwo")
     case Ecto.Changeset.apply_action(changeset, :validate) do
