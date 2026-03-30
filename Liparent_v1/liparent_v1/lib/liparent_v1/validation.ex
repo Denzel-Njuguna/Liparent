@@ -73,7 +73,11 @@ defmodule LiparentV1.Validation do
     |> validate_format(:houseno, ~r/^[A-Za-z0-9\-]+$/,
         message: "must contain only letters, numbers, and hyphens")
   end
-
+  def validate_string_name(changeset, field) do
+        changeset
+        |>validate_format(field,  ~r/^[A-Za-z0-9\-]+$/,
+      message: "must contain only letters, number and hyphens")
+  end
   # Validate email format
   def validate_email(changeset, field) do
     validate_format(changeset, field, ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
