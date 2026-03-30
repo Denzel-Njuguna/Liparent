@@ -27,6 +27,7 @@ def compliance_info_changeset(compliance_info, params) do
     :trustaccountno,
     :amlcompliance
   ])
+  |>maybe_convert_aml_compliance()
   |> validate_required([
     :earblicenceno,
     :licenceexpirydate,
@@ -48,6 +49,20 @@ def compliance_info_changeset(compliance_info, params) do
   |> validate_trustaccountno(:trustaccountno)
   |> validate_amlcompliance(:amlcompliance)
 end
+defp maybe_convert_aml_compliance(changeset) do
+  case fetch_change(changeset, :amlcompliance) do
+    {:ok, value} when is_binary(value) ->
+      boolean_value = case String.downcase(value) do
+        "true" -> true
+        "false" -> false
+        _ -> value
+      end
+      put_change(changeset, :amlcompliance, boolean_value)
+
+    _ ->
+      changeset
+  end
+end
 defp validate_earblicence(changeset, field) do
   validate_change(changeset, field, fn _, value ->
     value = String.trim(String.upcase(value))
@@ -66,7 +81,8 @@ defp validate_earblicence(changeset, field) do
 
       [_prefix, number, year] = String.split(value, "/")
       year_num = String.to_integer(year)
-      current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+      # current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+      current_year = DateTime.utc_now().year
 
       cond do
         year_num < 2000 or year_num > current_year + 2 ->
@@ -125,7 +141,8 @@ defp validate_incorporationno(changeset, field) do
 
       [type, number, year] = String.split(value, "/")
       year_num = String.to_integer(year)
-      current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+      # current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+      current_year = DateTime.utc_now().year
 
       cond do
         year_num < 1950 or year_num > current_year + 1 ->
@@ -170,7 +187,7 @@ defp validate_singlebusinesspermit(changeset, field) do
             year = List.last(parts)
             if String.match?(year, ~r/^\d{4}$/) do
               year_num = String.to_integer(year)
-              current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+              current_year = DateTime.utc_now().year
 
               if year_num < current_year - 2 or year_num > current_year + 2 do
                 [{field, "permit year appears invalid"}]

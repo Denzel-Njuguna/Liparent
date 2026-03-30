@@ -101,7 +101,8 @@ defp validate_iskmembership(changeset, field) do
 
       [type, number, year] = String.split(value, "/")
       year_num = String.to_integer(year)
-      current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+      # current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+      current_year = DateTime.utc_now().year
 
       cond do
         year_num < 2000 or year_num > current_year + 1 ->
@@ -184,7 +185,8 @@ defp validate_practisingcert(changeset, field) do
 
       [_prefix, number, year] = String.split(value, "/")
       year_num = String.to_integer(year)
-      current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+      # current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
+      current_year = DateTime.utc_now().year
 
       cond do
         year_num < current_year - 1 ->
