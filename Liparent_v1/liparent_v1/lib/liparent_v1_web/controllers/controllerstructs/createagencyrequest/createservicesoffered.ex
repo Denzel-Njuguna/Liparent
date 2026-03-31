@@ -15,14 +15,12 @@ defmodule LiparentV1Web.Controllerstructs.Createagencyrequest.Createservicesoffe
       :propertymanagement,
       :shorttermmanagement,
       :commercialleasing
-      ]
-    |>validate_required([:propertylettings, :propertymanagement, :shorttermmanagement, :commercialleasing])
+      ])
     |> validate_propertylettings(:propertylettings)
     |> validate_propertymanagement(:propertymanagement)
     |> validate_shorttermmanagement(:shorttermmanagement)
     |> validate_commercialleasing(:commercialleasing)
     |> validate_at_least_one_service()
-    )
   end
   defp validate_propertylettings(changeset, field) do
   validate_change(changeset, field, fn _, value ->

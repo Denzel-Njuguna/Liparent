@@ -35,7 +35,8 @@ defmodule LiparentV1Web.Router do
 
   scope "/api", LiparentV1Web do
     pipe_through :api
-    post "/signup", EmployeeController,:process_signup
+    post "/signup/agency", AgencyController,:process_create_agency
+    post "/signup/employee", EmployeeController,:process_signup
     post "/login", EmployeeController,:process_login
 
   end

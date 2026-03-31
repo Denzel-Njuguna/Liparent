@@ -18,15 +18,14 @@ defmodule LiparentV1Web.Controllerstructs.Createagencyrequest.Createareasofopera
     :commercial,
     :industrial,
     :land
-  ]
+  ])
   |>validate_required([:countiestownserved, :residential, :commercial, :land, :industrial])
   |> validate_countiestownsserved(:countiestownsserved)
   |> validate_residential(:residential)
   |> validate_commercial(:commercial)
   |> validate_industrial(:industrial)
   |> validate_land(:land)
-  |> validate_at_least_one_property_type()
-  )
+  # |> validate_at_least_one_property_type()
   end
   defp validate_countiestownsserved(changeset, field) do
   validate_change(changeset, field, fn _, value ->

@@ -9,6 +9,7 @@ alias LiparentV1.Validation
   field :earbregistration, :string
   field :iskmembership, :string
   field :krapin, :string
+  field :password, :string
   field :practisingcertno, :string
   field :certexpirydate, :string
   end
@@ -19,16 +20,18 @@ alias LiparentV1.Validation
     :nationalid,
     :earbregistration,
     :iskmembership,
+    :password,
     :krapin,
     :practisingcertno,
     :certexpirydate
   ])
-  |> validate_required([:fullname, :nationalid])
+  |> validate_required([:fullname, :nationalid,:password,:earbregistration,:iskmembership,:krapin,:practisingcertno,:certexpirydate])
   |> Validation.validate_string_name(:fullname)
   # Add the new validations
   |> validate_nationalid(:nationalid)
   |> validate_earbregistration(:earbregistration)
   |> validate_iskmembership(:iskmembership)
+  |>Validation.validate_password_strength(:password)
   |> validate_krapin(:krapin)
   |> validate_practisingcert(:practisingcertno)
   |> validate_certexpirydate(:certexpirydate)
@@ -101,7 +104,6 @@ defp validate_iskmembership(changeset, field) do
 
       [type, number, year] = String.split(value, "/")
       year_num = String.to_integer(year)
-      # current_year = System.os_time(:second) |> DateTime.from_unix!() |> DateTime.to_date() |> Date.year_of_era()
       current_year = DateTime.utc_now().year
 
       cond do

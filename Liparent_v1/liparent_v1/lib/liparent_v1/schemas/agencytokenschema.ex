@@ -1,6 +1,8 @@
 defmodule LiparentV1.Schemas.Agencytokenschema do
   use Ecto.Schema
   import Ecto.Changeset
+
+  @schema_prefix "agency"
   @primary_key{:jti, :string, autogenerate: false}
   schema "agencytoken" do
     field :userid, :string

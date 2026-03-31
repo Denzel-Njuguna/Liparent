@@ -10,6 +10,7 @@ defmodule LiparentV1.Agencyemployeeaccount do
     end
   end
 
+  @spec authenticate_agency_employee(binary(), any()) :: {:error, <<_::200>>} | {:ok, any()}
   def authenticate_agency_employee(email, password) do
     case Repo.get_by(Agencyemployeeschema, email: String.downcase(email)) do
       nil ->

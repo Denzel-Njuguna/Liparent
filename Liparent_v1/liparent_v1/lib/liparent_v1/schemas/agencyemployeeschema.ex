@@ -1,5 +1,4 @@
 defmodule LiparentV1.Schemas.Agencyemployeeschema do
-  alias LiparentV1.Schemas.Agencyemployeeschema
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -16,14 +15,11 @@ defmodule LiparentV1.Schemas.Agencyemployeeschema do
     field :role, :string
   end
 
-  @spec registration_changeset(
-          :invalid
-          | %{optional(:__struct__) => none(), optional(atom() | binary()) => any()}
-        ) :: Ecto.Changeset.t()
-  def registration_changeset(attr) do
-    %Agencyemployeeschema{}
+  def registration_changeset(employee, attr) do
+    employee
     |>cast(attr, [:fullname, :agencyid,:email, :phonenumber, :role, :createdby, :password])
     |>validate_required([:fullname, :agencyid,:email, :phonenumber, :role, :createdby, :password])
+    # |>put_change(:role,:admin)
     |>hash_password()
 
   end
