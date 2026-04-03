@@ -16,7 +16,7 @@ defmodule LiparentV1.Schemas.Createagencyschemas.Principalagentdbschema do
   field :certexpirydate, :string
   end
 # test case here is if the same employee creates more that one schema
-  def changeset(principalagent, atts, :employeeid) do
+  def changeset(principalagent, atts, employeeid) do
     principalagent
     |> cast(atts, [
     :fullname,
@@ -28,10 +28,10 @@ defmodule LiparentV1.Schemas.Createagencyschemas.Principalagentdbschema do
     :practisingcertno,
     :certexpirydate
   ])
-  |> validate_required([:fullname, :nationalid,:password,:earbregistration,:iskmembership,:krapin,:practisingcertno,:certexpirydate,:employeeid])
+  |> validate_required([:fullname, :nationalid,:password,:earbregistration,:iskmembership,:krapin,:practisingcertno,:certexpirydate])
   # we put unique constraint here so incase of an error we have a standardised error instead or a raw sql query
-  |> unique_constraint(:employeeid)
-  |>put_change(:employeeid, :employeeid)
+  |> unique_constraint(employeeid)
+  |>put_change(:employeeid, employeeid)
   end
 
 end

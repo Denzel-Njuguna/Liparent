@@ -4,7 +4,7 @@ defmodule LiparentV1.Agencyemployeeaccount do
 
 
   def register_agency_employee(attrs) do        # keep as 1 arg, fix the controller call instead
-    case Agencyemployeeschema.registration_changeset(attrs) |> Repo.insert() do
+    case Agencyemployeeschema.registration_changeset(%Agencyemployeeschema{},attrs) |> Repo.insert() do
       {:ok, employee} -> {:ok, employee}
       {:error, changeset} -> {:error, changeset}
     end

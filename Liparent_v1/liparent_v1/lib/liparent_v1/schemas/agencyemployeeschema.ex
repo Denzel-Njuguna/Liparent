@@ -27,7 +27,6 @@ defmodule LiparentV1.Schemas.Agencyemployeeschema do
       if password = get_change(changeset, :password) do
         changeset
         |>put_change(:password, Bcrypt.hash_pwd_salt(password))
-        |>delete_change(:password)
       else
         changeset
       end

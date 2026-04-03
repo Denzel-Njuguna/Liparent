@@ -3,19 +3,20 @@ defmodule LiparentV1.Schemas.Createagencyschemas.Createoperationsdbschema do
     use Ecto.Schema
     import Ecto.Changeset
   @schema_prefix "agency"
-  @primary_key{:operationsid, :binary_id, autogenerate: false}
-  schema "areasofops" do
-  field :countiestownsserved, :string
-  field :agencyid, :binary_id
-  field :residential, :boolean
-  field :commercial, :boolean
-  field :industrial, :boolean
-  field :land, :boolean
+  @primary_key {:operationsid, :binary_id, autogenerate: true}
+    schema "areasofops" do
+    field :agencyid, :binary_id
+    field :countytown, :string        # 👈 single county, not a list
+    field :residential, :boolean, default: false
+    field :commercial, :boolean, default: false
+    field :industrial, :boolean, default: false
+    field :land, :boolean, default: false
+  timestamps()
   end
   def changeset(areasofop, atts, agencyid) do
     areasofop
     |> cast(atts, [
-      :countiestownsserved,
+      :countytown,
       :residential,
       :commercial,
       :industrial,

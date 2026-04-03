@@ -22,7 +22,6 @@ defmodule LiparentV1.Schemas.Createagencyschemas.Basicinfodbschema do
     :yearestablished,
     :agencytype,
     :physicaladdress,
-    :postaladdress,
     :phonenumber,
     :businessemail,
     :websiteurl

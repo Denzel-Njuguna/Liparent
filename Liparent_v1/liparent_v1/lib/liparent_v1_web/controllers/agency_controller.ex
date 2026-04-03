@@ -1,4 +1,4 @@
-defmodule LiparentV1Web.AgencyController do
+defmodule LiparentV1Web.Agencycontroller do
   use LiparentV1Web, :controller
   alias LiparentV1.Schemas.Createagencyschemas.Principalagentdbschema
   alias LiparentV1.Schemas.Agencyemployeeschema
@@ -7,8 +7,8 @@ defmodule LiparentV1Web.AgencyController do
   alias LiparentV1.Schemas.Createagencyschemas.{Compliancedbschema, Basicinfodbschema,Principalagentdbschema,Createoperationsdbschema,Servicesdbschema}
   alias LiparentV1Web.Controllerstructs.Createagencyrequest.Createservicesoffered
   alias LiparentV1Web.Controllerstructs.Createagencyrequest.Createareasofoperation
-  alias LiparentV1Web.Controllerstructs.Createagencyrequest.Createagencycompliancerequest
   alias LiparentV1Web.Controllerstructs.Createagencyrequest.Createagencybasicinfo
+  alias LiparentV1Web.Controllerstructs.Createagencyrequest.Createagencycompliancerequest
   alias LiparentV1Web.Controllerstructs.Createagencyrequest.Createadminrequest
   require Logger
 
@@ -67,15 +67,12 @@ defmodule LiparentV1Web.AgencyController do
     result =
       Multi.new()
 
-      # ─── Step 1: Insert Agency ───────────────────────────────────────────
-      |> Multi.insert(:agency, fn _ ->
-        Basicinfodbschema.changeset(
-          %Basicinfodbschema{},
-          Map.from_struct(val_changesets.basic)
-        )
-      end)
+      # ─── step 1: insert agency ───────────────────────────────────────────
+      |> Multi.insert(:agency,
+    Basicinfodbschema.changeset(%Basicinfodbschema{}, Map.from_struct(val_changesets.basic))
+      )
 
-      # ─── Step 2: Insert Employee (admin, createdby = nil for now) ────────
+      # ─── step 2: insert employee (admin, createdby = nil for now) ────────
       |> Multi.insert(:employee, fn %{agency: agency} ->
         Agencyemployeeschema.registration_changeset(
           %Agencyemployeeschema{},
@@ -91,12 +88,12 @@ defmodule LiparentV1Web.AgencyController do
         )
       end)
 
-      # ─── Step 3: Update Employee createdby = their own employeeid ────────
+      # ─── step 3: update employee createdby = their own employeeid ────────
       |> Multi.update(:employee_self_ref, fn %{employee: employee} ->
         Ecto.Changeset.change(employee, %{createdby: employee.employeeid})
       end)
 
-      # ─── Step 4: Insert Principal Agent ──────────────────────────────────
+      # ─── step 4: insert principal agent ──────────────────────────────────
       |> Multi.insert(:principal_agent, fn %{employee_self_ref: employee} ->
         Principalagentdbschema.changeset(
           %Principalagentdbschema{},
@@ -105,7 +102,7 @@ defmodule LiparentV1Web.AgencyController do
         )
       end)
 
-      # ─── Step 5: Insert Compliance ───────────────────────────────────────
+      # ─── step 5: insert compliance ───────────────────────────────────────
       |> Multi.insert(:compliance, fn %{agency: agency} ->
         Compliancedbschema.changeset(
           %Compliancedbschema{},
@@ -114,7 +111,7 @@ defmodule LiparentV1Web.AgencyController do
         )
       end)
 
-      # ─── Step 6: Insert Areas of Operation ───────────────────────────────
+      # ─── step 6: insert areas of operation ───────────────────────────────
       |> Multi.insert(:areasofoperation, fn %{agency: agency} ->
         Createoperationsdbschema.changeset(
           %Createoperationsdbschema{},
@@ -123,7 +120,7 @@ defmodule LiparentV1Web.AgencyController do
         )
       end)
 
-      # ─── Step 7: Insert Services ─────────────────────────────────────────
+      # ─── step 7: insert services ─────────────────────────────────────────
       |> Multi.insert(:services, fn %{agency: agency} ->
         Servicesdbschema.changeset(
           %Servicesdbschema{},
@@ -136,33 +133,33 @@ defmodule LiparentV1Web.AgencyController do
 
     case result do
       {:ok, %{agency: agency, employee: employee, principal_agent: _principal_agent}} ->
-        Logger.info("Agency created successfully: #{agency.agencyid}, employee: #{employee.employeeid}")
+        Logger.info("agency created successfully: #{agency.agencyid}, employee: #{employee.employeeid}")
         json(conn, %{
           success: true,
-          message: "Agency created successfully",
+          message: "agency created successfully",
           agencyid: agency.agencyid
         })
 
       {:error, failed_step, failed_changeset, _changes_so_far} ->
-        Logger.error("Agency creation failed at step: #{failed_step}")
+        Logger.error("agency creation failed at step: #{failed_step}")
         json(conn, %{
           success: false,
-          error: "Failed at step: #{failed_step}",
+          error: "failed at step: #{failed_step}",
           details: format_errors(failed_changeset)
         })
     end
   end
 
-  # ─── Helpers ─────────────────────────────────────────────────────────────
+  # ─── helpers ─────────────────────────────────────────────────────────────
 
-  defp format_errors(%Ecto.Changeset{} = changeset) do
-    Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
+  defp format_errors(%Ecto.Changeset{} = Changeset) do
+    Ecto.Changeset.traverse_errors(Changeset, fn {msg, opts} ->
       Enum.reduce(opts, msg, fn {key, value}, acc ->
         String.replace(acc, "%{#{key}}", to_string(value))
       end)
     end)
   end
 
-  # if failed_step returns something other than a changeset e.g. a string
+  # if failed_step returns something other than a Changeset e.g. a string
   defp format_errors(other), do: inspect(other)
 end

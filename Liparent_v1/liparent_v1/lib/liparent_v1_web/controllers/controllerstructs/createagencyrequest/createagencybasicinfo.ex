@@ -22,7 +22,6 @@ defmodule LiparentV1Web.Controllerstructs.Createagencyrequest.Createagencybasici
     :yearestablished,
     :agencytype,
     :physicaladdress,
-    :postaladdress,
     :phonenumber,
     :businessemail,
     :websiteurl
@@ -32,7 +31,6 @@ defmodule LiparentV1Web.Controllerstructs.Createagencyrequest.Createagencybasici
   |>Validation.validate_phone(:phonenumber)
   |>Validation.validate_string_name(:agencyname)
   |>Validation.validate_string_name(:physicaladdress)
-  |>Validation.validate_string_name(:postaladdress)
   |>validate_website_url(:websiteurl,required: false, allow_blank: true)
   |>validate_inclusion(:agencytype,["sole proprietorship", "limited company", "partnership"])
   # look into adding one for business reg no
